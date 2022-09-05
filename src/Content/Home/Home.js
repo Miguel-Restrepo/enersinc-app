@@ -5,7 +5,7 @@ import axios from "axios";
 import { DeleteOutlined, EditOutlined, PlusOutlined, SearchOutlined } from '@ant-design/icons';
 import "antd/dist/antd.css";
 const { Option } = Select;
-const { Header, Footer, Sider, Content } = Layout;
+const { Content } = Layout;
 const layout = {
   labelCol: {
     span: 8,
@@ -64,10 +64,6 @@ const Home = () => {
             </Tag> : <Tag color="green" key={status}>
               {status.toUpperCase()}
             </Tag>
-
-
-
-
           }
         </>
       ),
@@ -105,9 +101,6 @@ const Home = () => {
               setModal2(true);
             }} icon={<DeleteOutlined />} />
           </Tooltip>
-
-
-        
         </Space>
       ),
     },
@@ -177,17 +170,12 @@ const Home = () => {
     Get(1);
   }, []);
   const [form] = Form.useForm();
-
-  
-
   const onFinish = (values) => {
     console.log(values);
   };
-
   const onReset = () => {
     form.resetFields();
   };
-
   return (
     <>
       <Modal title={edit ? 'Edit' : 'New'}
@@ -296,7 +284,6 @@ const Home = () => {
       </>:
       <h2>Are you sure you weat to delete {row != null ? row.name+"'s" : ''} record? </h2>
       }
-
       </Modal>
       <div>
         <br></br>
@@ -307,22 +294,13 @@ const Home = () => {
        <Button onClick={() => {
               setEdit(false);
               onReset();
-             
               showModal();
             }} icon={<PlusOutlined />}>New</Button>
-
         <Content><Table columns={columns} dataSource={dataTable} /></Content>
       </Layout>
     </Layout>
-      
-   
-        
-
       </div>
     </>
   );
-
 }
-
-
 export default Home;

@@ -1,18 +1,33 @@
 import React, { Component } from "react";
 import { Menu } from "antd";
-import { Outlet, Link } from "react-router-dom";
+
+import { BrowserRouter as Router, Route, Link, NavLink, Routes } from "react-router-dom";
+import Home from "../Home/Home";
+import Dashboard from "../Graphics/Dashboard";
 class LeftMenu extends Component {
   render() {
     return (
-      <Menu mode="horizontal">
-        <Menu.Item key="home">
-          <a href="./">Home</a>
-          
-        </Menu.Item>
-        <Menu.Item key="dashboard">
-          <a href="/dashboard">Dashboard</a>
-        </Menu.Item>
-      </Menu>
+      <>
+        <Router>
+
+              <NavLink
+                className="navbar-item"
+                activeClassName="is-active"
+                to="/"
+                exact
+              >
+                Home
+              </NavLink>
+              <NavLink
+                className="navbar-item"
+                activeClassName="is-active"
+                to="/dashboard"
+                exact
+              >
+                Dashboard
+              </NavLink>
+        </Router>
+      </>
     );
   }
 }
