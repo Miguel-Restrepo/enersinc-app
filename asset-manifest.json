@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/enersinc-app/static/css/main.2ab42e62.css",
+    "main.js": "/enersinc-app/static/js/main.a0555763.js",
+    "static/js/787.90ef1d66.chunk.js": "/enersinc-app/static/js/787.90ef1d66.chunk.js",
+    "static/media/logo.png": "/enersinc-app/static/media/logo.fea238c7f151db8ae832.png",
+    "index.html": "/enersinc-app/index.html",
+    "main.2ab42e62.css.map": "/enersinc-app/static/css/main.2ab42e62.css.map",
+    "main.a0555763.js.map": "/enersinc-app/static/js/main.a0555763.js.map",
+    "787.90ef1d66.chunk.js.map": "/enersinc-app/static/js/787.90ef1d66.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2ab42e62.css",
+    "static/js/main.a0555763.js"
+  ]
+}
