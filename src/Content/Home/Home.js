@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, Space, Table, Tag, Tooltip, Form, Input, Select, Typography , Layout, notification  } from 'antd';
+import { Button, Modal, Space, Table, Tag, Tooltip, Form, Input, Select, Typography, Layout, notification } from 'antd';
 import { useState, useEffect } from 'react';
 import axios from "axios";
 import { DeleteOutlined, EditOutlined, PlusOutlined, SearchOutlined } from '@ant-design/icons';
@@ -24,17 +24,15 @@ const Home = () => {
   const urlAPI = "https://gorest.co.in/public/v2/users";
   const [dataTable, setDataTable] = useState([]);
   const [row, setRow] = useState(null);
-  const [edit, setEdit]= useState(false);
-  const [view, setView]= useState(false);
+  const [edit, setEdit] = useState(false);
+  const [view, setView] = useState(false);
   const config =// {${process.env.SECRET}
-    { headers: {"Authorization" : `Bearer 92f23b36cb50476b0ff193f61dfb5c08064c0aa0921efe3119995425ab11636d`} };
+    { headers: { "Authorization": `Bearer 92f23b36cb50476b0ff193f61dfb5c08064c0aa0921efe3119995425ab11636d` } };
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modal2, setModal2]= useState(false);
+  const [modal2, setModal2] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
-
-
   const columns = [
     {
       title: 'Name',
@@ -82,7 +80,7 @@ const Home = () => {
           </Tooltip>
 
           <Tooltip title="Edit">
-            <Button shape="circle"onClick={() => {
+            <Button shape="circle" onClick={() => {
               setEdit(true);
               form.setFieldsValue({
                 id: record.id,
@@ -122,35 +120,35 @@ const Home = () => {
     axios.put(`${urlAPI}/${id}`, {
       name: name,
       gender: gender,
-      email:email,
-      status: status
-    },  config)
-      .then(response => {
-        Get(1);
-        setIsModalOpen(false);
-        openNotificationWithIcon('success','Succes', 'Record update successfully');
-        return response.data;
-      })
-      .catch(error => {
-        openNotificationWithIcon('error','Error', 'something went wrong, please try again');
-        return error.response.data;
-      })
-  }
-  const New = ( name, gender, email, status) => {
-    axios.post(`${urlAPI}`, {
-      name: name,
-      gender: gender,
-      email:email,
+      email: email,
       status: status
     }, config)
       .then(response => {
         Get(1);
-        openNotificationWithIcon('success','Succes', 'New record created successfully');
+        setIsModalOpen(false);
+        openNotificationWithIcon('success', 'Succes', 'Record update successfully');
+        return response.data;
+      })
+      .catch(error => {
+        openNotificationWithIcon('error', 'Error', 'something went wrong, please try again');
+        return error.response.data;
+      })
+  }
+  const New = (name, gender, email, status) => {
+    axios.post(`${urlAPI}`, {
+      name: name,
+      gender: gender,
+      email: email,
+      status: status
+    }, config)
+      .then(response => {
+        Get(1);
+        openNotificationWithIcon('success', 'Succes', 'New record created successfully');
         setIsModalOpen(false);
         return response.data;
       })
       .catch(error => {
-        openNotificationWithIcon('error','Error', 'Existing email error');
+        openNotificationWithIcon('error', 'Error', 'Existing email error');
         return error.response.data;
       })
   }
@@ -158,11 +156,11 @@ const Home = () => {
     axios.delete(`${urlAPI}/${id}`, config)
       .then(response => {
         Get(1);
-        openNotificationWithIcon('success','Succes', 'Record deleted Successfully');
+        openNotificationWithIcon('success', 'Succes', 'Record deleted Successfully');
         return response.data;
       })
       .catch(error => {
-        openNotificationWithIcon('error','Error', 'something went wrong, please try again');
+        openNotificationWithIcon('error', 'Error', 'something went wrong, please try again');
         return error;
       });
   }
@@ -182,11 +180,11 @@ const Home = () => {
         visible={isModalOpen}
         onOk={() => {
           console.log(form);
-          if(edit){
-            Edit(form.getFieldValue('id'),form.getFieldValue('name'),form.getFieldValue('gender'),form.getFieldValue('email'),form.getFieldValue('status'))
-          }else{
-            New(form.getFieldValue('name'),form.getFieldValue('gender'),form.getFieldValue('email'),form.getFieldValue('status'));
-          }  
+          if (edit) {
+            Edit(form.getFieldValue('id'), form.getFieldValue('name'), form.getFieldValue('gender'), form.getFieldValue('email'), form.getFieldValue('status'))
+          } else {
+            New(form.getFieldValue('name'), form.getFieldValue('gender'), form.getFieldValue('email'), form.getFieldValue('status'));
+          }
         }}
         onCancel={() => {
           setIsModalOpen(false);
@@ -218,7 +216,7 @@ const Home = () => {
           >
             <Select
               placeholder="Select a option and change input text above"
-              allowClear 
+              allowClear
             >
               <Option value="male">male</Option>
               <Option value="female">female</Option>
@@ -259,8 +257,8 @@ const Home = () => {
       <Modal title={view ? 'View' : 'Delete'}
         visible={modal2}
         onOk={() => {
-          if(!view){
-            Delete(row.id);  
+          if (!view) {
+            Delete(row.id);
           }
           setModal2(false);
         }}
@@ -268,37 +266,37 @@ const Home = () => {
           setModal2(false);
         }}>
         {view ?
-        <>
-        <Typography>
-        <pre>Name: {row != null ? row.name : ''}</pre>
-      </Typography>
-      <Typography>
-        <pre>Gender: {row != null ? row.gender : ''}</pre>
-      </Typography>
-      <Typography>
-        <pre>Email: {row != null ? row.email : ''}</pre>
-      </Typography>
-      <Typography>
-        <pre>Status: {row != null ? row.status : ''}</pre>
-      </Typography>
-      </>:
-      <h2>Are you sure you weat to delete {row != null ? row.name+"'s" : ''} record? </h2>
-      }
+          <>
+            <Typography>
+              <pre>Name: {row != null ? row.name : ''}</pre>
+            </Typography>
+            <Typography>
+              <pre>Gender: {row != null ? row.gender : ''}</pre>
+            </Typography>
+            <Typography>
+              <pre>Email: {row != null ? row.email : ''}</pre>
+            </Typography>
+            <Typography>
+              <pre>Status: {row != null ? row.status : ''}</pre>
+            </Typography>
+          </> :
+          <h2>Are you sure you weat to delete {row != null ? row.name + "'s" : ''} record? </h2>
+        }
       </Modal>
       <div>
         <br></br>
-      <Layout>
-      
-      <Layout>
+        <Layout>
 
-       <Button onClick={() => {
+          <Layout>
+
+            <Button onClick={() => {
               setEdit(false);
               onReset();
               showModal();
             }} icon={<PlusOutlined />}>New</Button>
-        <Content><Table columns={columns} dataSource={dataTable} /></Content>
-      </Layout>
-    </Layout>
+            <Content><Table columns={columns} dataSource={dataTable} /></Content>
+          </Layout>
+        </Layout>
       </div>
     </>
   );
